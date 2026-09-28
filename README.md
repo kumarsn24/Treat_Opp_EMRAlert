@@ -1,6 +1,6 @@
 # CareSignal patient alerts
 
-A responsive clinical patient-alert interface built with React, Vite, and TypeScript. It searches a local patient API route and presents a concise patient summary, recent vital signs, and prioritized clinical alerts.
+A responsive clinical patient-alert interface built with React, Vite, and TypeScript. This repository contains a program used to make EMR alerts, with model-informed treatment-effectiveness predictions.
 
 ## Run locally
 
