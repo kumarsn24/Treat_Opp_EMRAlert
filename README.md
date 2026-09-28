@@ -29,4 +29,16 @@ The Vite configuration registers a development-only `GET /api/patients/:patientI
 npm run dev      # start the development app and local API route
 npm run build    # type-check and create an optimized production build
 npm run preview  # serve the production build
+npm start        # serve the production build and patient API on port 8080
 ```
+
+## Docker
+
+The production image builds the Vite application, serves it from a small Node.js server, and exposes the patient API at `GET /api/patients/:patientId`. It includes the required `MODEL_FINAL_OUTPUT.json` dataset, listens on port `8080`, and runs as the non-root `node` user.
+
+```bash
+docker build -t ui-emr-alerts .
+docker run --rm -p 8080:8080 ui-emr-alerts
+```
+
+Open `http://localhost:8080` and query `http://localhost:8080/api/patients/2355`. Container health can be checked at `http://localhost:8080/health`.
