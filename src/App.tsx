@@ -3,7 +3,8 @@ import { FormEvent, useState } from "react";
 type AlertSeverity = "critical" | "warning" | "info";
 type Patient = {
   PATIENT_ID: number;
-  TXN_LOCATION_TYPE: string;
+  TXN_LOCATION_TYPE?: string;
+  TXN_DT?: string;
   INSURANCE_TYPE: string;
   NO_OF_CONDN: number;
   NO_OF_SYMPT: number;
@@ -200,7 +201,7 @@ function App() {
                 <p>{patient.PAT_AGE} years · Patient ID {patient.PATIENT_ID}</p>
               </div>
               <div className="patient-meta">
-                <p><strong>{patient.TXN_LOCATION_TYPE}</strong><span>Transaction location</span></p>
+                <p><strong>{patient.TXN_LOCATION_TYPE ?? "Not recorded"}</strong><span>{patient.TXN_DT ? `Transaction date · ${patient.TXN_DT}` : "Transaction location"}</span></p>
                 <p><strong>{patient.PHY_PHYSICIAN_TYPE}</strong><span>Physician specialty · {patient.PHY_STATE}</span></p>
               </div>
               <span className={`risk risk-${riskLevel(patient).toLowerCase()}`}>{riskLevel(patient)} risk</span>

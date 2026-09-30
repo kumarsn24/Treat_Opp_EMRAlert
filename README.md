@@ -42,3 +42,13 @@ docker run --rm -p 8080:8080 ui-emr-alerts
 ```
 
 Open `http://localhost:8080` and query `http://localhost:8080/api/patients/2355`. Container health can be checked at `http://localhost:8080/health`.
+
+## Feature-engineering analysis
+
+Use the dependency-free Python profiler to inspect a training CSV and generate a model-ready feature-engineering plan. It detects numeric, categorical, and date fields; profiles missingness and cardinality; recommends transformations; and excludes identifier fields by default to reduce memorization risk.
+
+```bash
+python scripts/analyze_feature_engineering.py "C:\path\to\Cleansed_Output.csv" --target TARGET --output feature_engineering_report.json
+```
+
+For the supplied `Cleansed_Output.csv`, the report evaluates the binary `TARGET` and recommends features from transaction dates, clinical counts, demographics, location, insurance, transaction types, and descriptions. `PATIENT_ID` and `PHYSICIAN_ID` are excluded as raw model features; any historical aggregate derived from them must be fit within each training fold to avoid target leakage.
